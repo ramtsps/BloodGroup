@@ -1,0 +1,276 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container py-5">
+  <div class="text-center">
+    <h2 class="fw-bold text-primary">Upload Fingerprint Image</h2>
+    <p class="text-muted">
+      Our AI-powered system analyzes fingerprint patterns to predict blood
+      groups with high accuracy. Simply upload a fingerprint image, and our deep
+      learning model will do the rest.
+    </p>
+  </div>
+
+  <div
+    class="card mx-auto p-4 shadow-lg rounded-4 border-0"
+    style="
+      max-width: 500px;
+      background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    "
+  >
+    <form id="uploadForm" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Age:</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Mobile Number:</label>
+        <input
+          type="tel"
+          id="mobile"
+          name="mobile"
+          class="form-control"
+          pattern="[0-9]{10}"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Email ID:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Choose Image:</label>
+        <input
+          type="file"
+          id="imageInput"
+          name="image"
+          class="form-control"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-gradient w-100">
+        🚀 Upload & Predict
+      </button>
+    </form>
+
+    <!-- Progress Bar -->
+    <div class="progress mt-3 d-none" id="progressBarContainer">
+      <div
+        id="progressBar"
+        class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+        role="progressbar"
+        style="width: 0%"
+      ></div>
+    </div>
+    <div
+      id="successMessage"
+      class="alert alert-success mt-4 d-none"
+      role="alert"
+    >
+      ✅ Your request has been processed successfully! An email has been sent to
+      your inbox with the details. Please check your email for further
+      information.
+    </div>
+
+    <!-- Prediction Output -->
+    <div class="text-center mt-4" id="resultContainer" style="display: none">
+      <h4 class="fw-bold text-success">Prediction Result</h4>
+      <img
+        id="uploadedImage"
+        class="img-fluid rounded shadow-sm mb-3"
+        style="max-width: 100%; border: 4px solid #0d6efd"
+      />
+      <p class="lead">
+        <strong>Predicted Blood Group:</strong>
+        <span id="predictedLabel" class="text-danger fw-bold"></span>
+      </p>
+      <p>
+        <strong>Confidence Score:</strong>
+        <span id="confidenceScore" class="text-success fw-bold"></span>%
+      </p>
+    </div>
+  </div>
+
+  <!-- Additional Info -->
+  <div class="mt-5">
+    <div class="info-box">
+      <h5 class="text-primary fw-bold">🛠 How Does This Work?</h5>
+      <p class="text-muted">
+        Our AI model is trained using convolutional neural networks (**ResNet,
+        VGG16, and AlexNet**) to analyze fingerprint patterns and classify blood
+        groups based on unique ridge formations. It leverages deep learning
+        algorithms for high-accuracy predictions.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h5 class="text-primary fw-bold">
+        🩸 Why Fingerprint-Based Blood Group Detection?
+      </h5>
+      <ul class="list-group list-group-flush text-muted">
+        <li class="list-group-item border-0">
+          🔍 **Non-invasive and hassle-free**
+        </li>
+        <li class="list-group-item border-0">
+          ⚡ **Quick and accurate predictions**
+        </li>
+        <li class="list-group-item border-0">
+          🩸 **Useful for emergency cases & blood donation camps**
+        </li>
+        <li class="list-group-item border-0">
+          📈 **Eliminates the need for traditional blood tests**
+        </li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h5 class="text-primary fw-bold">📊 Model Performance</h5>
+      <p class="text-muted">
+        Our deep learning model has achieved an **accuracy of 97.5%** on test
+        data. The system continuously improves with real-world input, making it
+        highly reliable for medical and forensic applications.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h5 class="text-primary fw-bold">👥 Who Can Use This System?</h5>
+      <ul class="list-group list-group-flush text-muted">
+        <li class="list-group-item border-0">
+          🏥 **Hospitals & Medical Labs** - Faster blood type detection.
+        </li>
+        <li class="list-group-item border-0">
+          🚑 **Emergency Services** - Instant identification in critical cases.
+        </li>
+        <li class="list-group-item border-0">
+          🕵️‍♂️ **Forensic Experts** - Useful for criminal investigations.
+        </li>
+        <li class="list-group-item border-0">
+          💉 **Blood Donation Camps** - Quickly categorize donors.
+        </li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h5 class="text-primary fw-bold">
+        🆚 Advantages Over Traditional Methods
+      </h5>
+      <p class="text-muted">
+        Unlike conventional blood testing, which requires needles and lab
+        equipment, our AI-based fingerprint detection is **faster, non-invasive,
+        and can be performed anywhere** using just a simple scanner or
+        smartphone camera.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+  .btn-gradient {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, #6610f2, #0d6efd);
+  }
+  .info-box {
+    padding: 20px;
+    background: linear-gradient(135deg, #eef1f6, #fdfdfd);
+    border-left: 6px solid #0d6efd;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  .info-box:hover {
+    transform: scale(1.04);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+  }
+</style>
+
+<!-- jQuery for AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#uploadForm").on("submit", function (e) {
+      e.preventDefault();
+
+      $("#progressBarContainer").removeClass("d-none");
+      $("#progressBar").css("width", "0%");
+
+      var formData = new FormData(this);
+      var fileInput = document.getElementById("imageInput");
+      var file = fileInput.files[0];
+
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#uploadedImage").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      $.ajax({
+        url: "{% url 'predict_blood_group' %}",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+          $("#progressBar").css("width", "30%");
+        },
+        success: function (response) {
+          $("#progressBar").css("width", "100%");
+          setTimeout(function () {
+            $("#progressBarContainer").addClass("d-none");
+
+            $("#resultContainer").fadeIn();
+            $("#predictedLabel").text(response.predicted_label);
+            $("#confidenceScore").text(response.confidence.toFixed(2));
+
+            // Show success message
+            $("#successMessage").removeClass("d-none").fadeIn();
+          }, 1000);
+        },
+
+        error: function () {
+          $("#progressBarContainer").addClass("d-none");
+          alert("Error in image processing. Please try again.");
+        },
+      });
+    });
+  });
+</script>
+
+{% endblock %} {% block title %}Upload Fingerprint{% endblock %}

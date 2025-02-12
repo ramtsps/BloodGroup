@@ -1,0 +1,277 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- Hero Section -->
+<div
+  class="container-fluid hero-section text-center d-flex flex-column justify-content-center align-items-center"
+>
+  <h1 class="fw-bold text-white display-4">
+    Deep Learning Blood Group Detection
+  </h1>
+  <p class="text-light lead">
+    Harness the power of CNN-based Deep Learning for real-time blood group
+    analysis.
+  </p>
+  <a href="{% url 'upload' %}" class="btn btn-gradient btn-lg mt-4"
+    >Upload & Detect</a
+  >
+</div>
+
+<!-- Features Section -->
+<div class="container-fluid features-section py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold text-dark">Why Choose Our System?</h2>
+    <p class="text-muted">
+      Fast, accurate, and AI-powered blood group detection.
+    </p>
+    <div class="row">
+      {% for feature in features %}
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <img
+              src="{{ feature.icon }}"
+              alt="{{ feature.title }}"
+              width="80"
+            />
+          </div>
+          <h4 class="mt-3">{{ feature.title }}</h4>
+          <p class="text-muted">{{ feature.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- How It Works -->
+<div class="container-fluid how-it-works-section text-center py-5">
+  <h2 class="fw-bold text-white">How It Works</h2>
+  <p class="text-light">
+    Follow these three simple steps to detect your blood group.
+  </p>
+  <div class="row justify-content-center">
+    <div class="col-md-3 step-box">
+      <span class="step-number">1</span>
+      <h5>Upload Your Fingerprint</h5>
+      <p class="text-light">Provide a clear fingerprint image for analysis.</p>
+    </div>
+    <div class="col-md-3 step-box">
+      <span class="step-number">2</span>
+      <h5>AI-Powered Analysis</h5>
+      <p class="text-light">
+        Our deep learning model processes your fingerprint.
+      </p>
+    </div>
+    <div class="col-md-3 step-box">
+      <span class="step-number">3</span>
+      <h5>Instant Blood Group Detection</h5>
+      <p class="text-light">Get your blood group results within seconds.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials -->
+<div class="container-fluid testimonials-section py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold text-dark">What Users Say</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p>
+            "Super fast and accurate! The best blood detection system I have
+            used."
+          </p>
+          <h5>- John Doe</h5>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p>"Saved me a trip to the lab! Highly recommended."</p>
+          <h5>- Sarah Smith</h5>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p>"AI-powered blood group detection made simple. A must-try!"</p>
+          <h5>- Alex Brown</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQs -->
+<div class="container-fluid faq-section py-5">
+  <div class="container">
+    <h2 class="fw-bold text-white text-center">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq1"
+          >
+            Is the AI blood group detection accurate?
+          </button>
+        </h2>
+        <div
+          id="faq1"
+          class="accordion-collapse collapse"
+          data-bs-parent="#faqAccordion"
+        >
+          <div class="accordion-body">
+            Yes! Our deep learning model has been trained on extensive datasets
+            for high accuracy.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq2"
+          >
+            How long does the detection process take?
+          </button>
+        </h2>
+        <div
+          id="faq2"
+          class="accordion-collapse collapse"
+          data-bs-parent="#faqAccordion"
+        >
+          <div class="accordion-body">
+            The process takes only a few seconds after uploading your
+            fingerprint image.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call to Action -->
+<div class="container-fluid cta-section text-center py-5">
+  <h3 class="fw-bold text-dark">Ready to Detect Your Blood Group?</h3>
+  <p class="text-muted">
+    Upload a fingerprint image and let our AI-powered system analyze it.
+  </p>
+  <a href="{% url 'upload' %}" class="btn btn-gradient btn-lg"
+    >Detect Blood Group Now</a
+  >
+</div>
+
+<!-- Footer -->
+
+<!-- Custom Styles -->
+<style>
+  /* 🔹 Section Backgrounds */
+  .hero-section {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    height: 400px;
+    color: white;
+  }
+  .features-section {
+    background: #f8f9fa;
+  }
+
+  .testimonials-section {
+    background: #ffffff;
+  }
+  .faq-section {
+    background: #6610f2;
+    color: white;
+  }
+  .cta-section {
+    background: #f8f9fa;
+  }
+
+  /* 🔹 Gradient Button */
+  .btn-gradient {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: white;
+    font-weight: bold;
+    padding: 14px 24px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, #6610f2, #0d6efd);
+    transform: scale(1.07);
+  }
+
+  /* 🔹 Feature Cards */
+  .feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  /* 🔹 Testimonials */
+  .testimonial-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 🔹 FAQ Accordion */
+  .accordion-button {
+    font-weight: bold;
+  }
+  /* 🔹 Full-Width Background with Gradient */
+  .how-it-works-section {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    padding: 80px 0;
+  }
+
+  /* 🔹 Step Boxes with Glowing Effect */
+  .step-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .step-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+  }
+
+  /* 🔹 Step Number Styling */
+  .step-number {
+    background: #ffc107;
+    color: #000;
+    padding: 15px 25px;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.5);
+  }
+
+  /* 🔹 Headings and Text */
+  .step-box h5 {
+    color: white;
+    font-weight: bold;
+  }
+
+  .step-box p {
+    font-size: 1rem;
+  }
+</style>
+
+{% endblock %} {% block title %}Home | Blood Group Detection{% endblock %}

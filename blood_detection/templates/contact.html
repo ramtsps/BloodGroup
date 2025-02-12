@@ -1,0 +1,110 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container py-5">
+  <h2 class="text-center text-primary fw-bold">Contact Us</h2>
+  <p class="text-muted text-center">
+    Have any questions? Reach out to us, and we’ll get back to you shortly.
+  </p>
+
+  <!-- Display Messages -->
+  {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+    <div
+      class="alert {{ message.tags }} alert-dismissible fade show text-center"
+      role="alert"
+    >
+      {{ message }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg p-4 rounded-4 border-0">
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label fw-semibold">Your Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold">Your Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label fw-semibold">Message</label>
+            <textarea
+              class="form-control"
+              id="message"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-gradient w-100">
+            📩 Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+  .btn-gradient {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    border: none;
+  }
+
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, #6610f2, #0d6efd);
+    transform: scale(1.05);
+  }
+
+  .card {
+    background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+  }
+
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 5px solid #28a745;
+  }
+
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 5px solid #dc3545;
+  }
+</style>
+{% endblock %} {% block title %}Contact - Blood Group Detector{% endblock %}

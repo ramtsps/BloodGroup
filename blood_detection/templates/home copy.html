@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Hero Section -->
+<div class="container text-center py-5">
+  <h1 class="fw-bold text-primary">Welcome to Blood Group Detector</h1>
+  <p class="lead text-muted">
+    A smart and efficient way to detect blood groups using image processing and
+    fingerprint analysis.
+  </p>
+  <a href="{% url 'upload' %}" class="btn btn-custom btn-lg mt-3"
+    >Get Started</a
+  >
+</div>
+
+<!-- Features Section -->
+<div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 border-0">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2913/2913975.png"
+          alt="AI-Powered Detection"
+          width="80"
+        />
+        <h4 class="mt-3">AI-Powered Detection</h4>
+        <p>
+          Uses advanced deep learning techniques to detect blood groups from
+          images.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 border-0">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3256/3256012.png"
+          alt="Fingerprint Analysis"
+          width="80"
+        />
+        <h4 class="mt-3">Fingerprint Analysis</h4>
+        <p>
+          Accurate detection using fingerprint-based blood group identification.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 border-0">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2731/2731929.png"
+          alt="User-Friendly Interface"
+          width="80"
+        />
+        <h4 class="mt-3">User-Friendly Interface</h4>
+        <p>Simple and intuitive UI designed for ease of use.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call to Action -->
+<div class="container text-center my-5">
+  <h3 class="fw-bold">Ready to Detect Your Blood Group?</h3>
+  <p class="text-muted">
+    Upload an image and let our AI-powered system analyze your blood group.
+  </p>
+  <a href="{% url 'upload' %}" class="btn btn-success btn-lg">Upload Now</a>
+</div>
+{% endblock %} {% block title %}Home | Blood Group Detection{% endblock %}
