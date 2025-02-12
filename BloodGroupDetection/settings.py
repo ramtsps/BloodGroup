@@ -16,7 +16,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-PORT = os.environ.get('PORT', 8000)  # Default to 8000 if PORT is not set
+# PORT = os.environ.get('PORT', 8000)  # Default to 8000 if PORT is not set
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,7 +28,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["bloodgroup.onrender.com","127.0.0.1","*"]
+# ALLOWED_HOSTS = ["bloodgroup.onrender.com","127.0.0.1","*"]
+ALLOWED_HOSTS = ["*"]  # Allow all hosts for testing, restrict this later
+PORT = os.getenv("PORT", "8000")
 
 # Application definition
 
