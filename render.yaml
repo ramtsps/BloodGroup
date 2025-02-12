@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: BloodGroupDetection
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn BloodGroupDetection.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: "4"
+      - key: PORT
+        value: "10000"

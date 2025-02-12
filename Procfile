@@ -1,1 +1,1 @@
-web: gunicorn BloodGroupDetection.wsgi
+web: gunicorn BloodGroupDetection.wsgi:application
